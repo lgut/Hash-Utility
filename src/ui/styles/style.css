@@ -1,0 +1,33 @@
+/* Styles go here */
+
+html, body{
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+#overlay{
+  background-color:rgba(0,0,0,0.5);
+  z-index:100;
+  color:white;
+}
+
+#progress-spinner{
+  display: inline-block;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid turquoise;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
+
+
