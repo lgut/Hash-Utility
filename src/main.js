@@ -1,4 +1,6 @@
-import { app, BrowserWindow } from 'electron';
+import { join } from "path"
+import { app, BrowserWindow, session } from 'electron';
+import { StartListeners } from './listeners';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -13,14 +15,22 @@ const createWindow = () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 800,
-    height: 401,
+    height: 480,
+    resizable: false,
+    title: "Hash Utility",
+    icon: join(__dirname, "assets/icons/favicon.ico"),
   });
+
+  mainWindow.setMenu(null)
 
   // and load the index.html of the app.
   mainWindow.loadURL(`file://${__dirname}/ui/index.html`);
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  //mainWindow.webContents.openDevTools();
+
+  // start listening for renderer events
+  StartListeners()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
@@ -29,7 +39,14 @@ const createWindow = () => {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
+  // prevents the save file dialog from appearing
+  session.defaultSession.on('will-download', (e, item, webContents) => {
+    e.preventDefault()
+  })
 };
+
+// should be conditional based on env
+// enableLiveReload()
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

@@ -1,10 +1,22 @@
 /* Styles go here */
 
+*{
+  user-select: none;
+}
+
+input[type="text"] {
+  user-select: text;
+}
+#compare input[type="text"]{
+  user-select: all;
+}
+
 html, body{
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
+  overflow-y: hidden;
 }
 
 
@@ -12,8 +24,41 @@ html, body{
 #overlay{
   background-color:rgba(0,0,0,0.5);
   z-index:100;
-  color:white;
+  color:lavender
 }
+
+#overlay > div {
+  border-style: dashed;
+  border-color: lavender;
+  width: 80%;
+  height: 80%;
+}
+
+#overlay .fa-smile-o{
+  font-size: 3rem;
+  padding-left:2rem
+}
+
+.notification{
+  position: absolute;
+  z-index: 50;
+  top: 0;
+  left:0;
+  overflow: hidden;
+  width: 100%;
+  transform: translateY(-70px);
+}
+
+.slidedown{
+  
+  animation: slidedown 2.5s 1.0s 1 ease forwards;
+}
+
+@keyframes slidedown {
+  0%, 100% { transform: translateY(-70px); }
+  10%, 90% { transform: translateY(0px); }
+}
+
 
 #progress-spinner{
   display: inline-block;
