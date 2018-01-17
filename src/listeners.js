@@ -11,6 +11,7 @@ function CalculateHash(algorithm, filepath) {
     // update sum with file content
     const start = process.hrtime()
     const stream = fs.createReadStream(path.resolve(filepath))
+    stream.on("error", (e) => { reject(e) })
     stream.on('data', (data) => { sum.update(data) })
     // make digest
     stream.on('end', () => {
@@ -35,6 +36,8 @@ export function StartListeners() {
     Promise.all(promises)
       .then((digests) => {
         e.sender.send("hash:done", digests)
+      }).catch((err) => {
+        e.sender.send("hash:error", err)
       })
   })
 }

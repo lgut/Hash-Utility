@@ -8,8 +8,15 @@ const StartCalculatingHash = (algorithms, file) => {
 
     DisplayHashes(digests, file)
   }
+  function ErrorHandler(error) {
+    const warningMessage = document.getElementById("hash-error")
+    loading.hide()
+    ListenForFile()
+    warningMessage.slidedown()
+  }
 
   loading.show()
   ipcRenderer.send("hash:start", algorithms, file.path)
   ipcRenderer.once("hash:done", DoneHashHandler)
+  ipcRenderer.once("hash:error", ErrorHandler)
 }
