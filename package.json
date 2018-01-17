@@ -1,8 +1,8 @@
 {
-  "name": "checksum-utility",
-  "productName": "checksum-utility",
+  "name": "hash-utility",
+  "productName": "Hash Utility",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "A utility for calculating the hash digests of files. Powered By Electron",
   "main": "src/main.js",
   "scripts": {
     "start": "electron-forge start",
@@ -12,7 +12,7 @@
     "lint": "eslint src --color"
   },
   "keywords": [],
-  "author": "luisg",
+  "author": "Luis Gutierrez",
   "license": "MIT",
   "config": {
     "forge": {
@@ -37,11 +37,11 @@
       "electronInstallerDebian": {},
       "electronInstallerRedhat": {},
       "github_repository": {
-        "owner": "",
-        "name": ""
+        "owner": "plantain-mang",
+        "name": "Luis Gutierrez"
       },
       "windowsStoreConfig": {
-        "packageName": "",
+        "packageName": "Hash Utility",
         "name": "checksumutility"
       }
     }
