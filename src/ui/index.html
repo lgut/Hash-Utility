@@ -4,18 +4,31 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../../node_modules/bulma/css/bulma.css">
-  <link rel="stylesheet" type="text/scss" href="styles/style.css" />
-  <script src="scripts/index.js"></script>
+  <link rel="stylesheet" href="../../node_modules/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/style.css" />
+  <script async src="scripts/preload.js"></script>
+  <script async src="scripts/listen-for-file.js"></script>
+  <script async src="scripts/start-calculating-hash.js"></script>
+  <script async src="scripts/display-hashes.js"></script>
+  <script async src="scripts/index.js"></script>
 </head>
 
 <body>
   <div id="overlay" class="is-overlay columns is-vcentered is-centered is-hidden">
-    hello
+    <div class="columns is-centered is-vcentered">
+      <span >
+        <i class="fa fa-smile-o" aria-hidden="true" ></i><br>
+        <h5>Drop File Here</h5>
+      </span>  
+    </div>
   </div>
-  <div class="section">
+  <div id="algorithm-warning" class="notification is-warning has-text-centered">Select at least one algorithm.</div>
+  <div id="copy-success" class="notification is-success has-text-centered">Copied!</div>
+  <div id="match" class="notification is-info has-text-centered"></div>
+  <div id="content" class="section">
     <div class="box has-text-centered">
 
-      <form id="algorithm-form" class="" accept-charset="utf-8">
+      <form id="algorithm-form" class="is-hidden" accept-charset="utf-8">
         <label for="file-input" class="title">Drag &amp; drop a file anywhere or click here to select a file</label>
         <input id="file-input" class="is-hidden" name="file-input" type="file" />
 
@@ -56,55 +69,58 @@
         </div>
       </form>
 
-      <div id="loading" class="">
+      <div id="loading" class="is-hidden">
         <div id="progress-spinner"></div>
         <h5 class="subtitle">Calculating</h5>
       </div>
 
-      <div id="done" class="">
+      <div id="done" class="is-hidden">
         <div class="container">
-          <div data-algorithm="md5" class="done field has-addons">
+          <h5 id="filename" class="subtitle"></h5>
+          <div data-algorithm="md5" class="hash-field field has-addons is-hidden">
             <input class="input is-primary" type="text" name="" id="" value="" readonly />
             <!--TODO: should only be visible when calculation completes -->
             <button type="button" class="button is-primary">Copy MD5</button>
           </div>
-          <div data-algorithm="sha1" class="done field has-addons">
+          <div data-algorithm="sha1" class="hash-field field has-addons is-hidden">
             <input class="input is-primary" type="text" name="" id="" value="" readonly />
             <!--TODO: should only be visible when calculation completes -->
             <button type="button" class="button is-primary">Copy SHA-1</button>
           </div>
 
-          <div data-algorithm="sha256" class="done field has-addons">
+          <div data-algorithm="sha256" class="hash-field field has-addons is-hidden">
             <input class="input is-primary" type="text" name="" id="" value="" readonly />
             <!--TODO: should only be visible when calculation completes -->
             <button type="button" class="button is-primary">Copy SHA-256</button>
           </div>
 
-          <div data-algorithm="sha512" class="done field has-addons">
+          <div data-algorithm="sha512" class="hash-field field has-addons is-hidden">
             <input class="input is-primary" type="text" name="" id="" value="" readonly />
             <!--TODO: should only be visible when calculation completes -->
             <button type="button" class="button is-primary">Copy SHA-512</button>
           </div>
         </div>
-      </div>
-      <hr>
-      <div class="level">
-        <div class="level-left">
-          <div class="level-item">
-            <button id="start-over" type="button" class="button is-primary">Start Over</button>
+        <hr>
+        <div class="level">
+          <div class="level-left">
+            <div class="level-item">
+              <button id="start-over" type="button" class="button is-primary">Start Over</button>
+            </div>
+          </div>
+          <div class="level-right">
+            <div class="level-item">
+              <form id="compare">
+                <div class="field has-addons">
+                  <input type="text" name="userHash" class="input is-primary">
+                  <button class="button is-info" type="button" name="paste" >Paste</button>
+                  <button class="button is-primary" type="submit">Compare</button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-        <div class="level-right">
-          <div class="level-item">
-            <form id="compare" >
-              <div class="field has-addons">
-                <input type="text" class="input is-primary">
-                <button class="button is-primary" type="submit">Compare</button>
-              </div>
-            </form>
-          </div>
-        </div>
       </div>
+
     </div>
 
   </div>
