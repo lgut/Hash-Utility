@@ -1,5 +1,5 @@
 {
-  "name": "hash-utility",
+  "name": "checksum-utility",
   "productName": "Hash Utility",
   "version": "1.0.0",
   "description": "A utility for calculating the hash digests of files. Powered By Electron",
