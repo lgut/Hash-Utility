@@ -1,21 +1,19 @@
 import { ipcMain } from 'electron'
-import * as path from 'path'
-import * as crypto from 'crypto'
-import * as fs from 'fs'
+import { resolve as resolvePath } from 'path'
+import { createHash } from 'crypto'
+import { createReadStream } from 'fs'
 
 function CalculateHash(algorithm, filepath) {
   return new Promise((resolve, reject) => {
-    console.log(`Calculating ${algorithm}`)
     // get algorithm
-    const sum = crypto.createHash(algorithm)
+    const sum = createHash(algorithm)
     // update sum with file content
     const start = process.hrtime()
-    const stream = fs.createReadStream(path.resolve(filepath))
+    const stream = createReadStream(resolvePath(filepath))
     stream.on("error", (e) => { reject(e) })
     stream.on('data', (data) => { sum.update(data) })
     // make digest
     stream.on('end', () => {
-      console.log(`Done Calculating ${algorithm}`)
       resolve({
         algorithm,
         hash: sum.digest('hex'),
