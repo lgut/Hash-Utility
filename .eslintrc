@@ -7,7 +7,12 @@
     "import/prefer-default-export":"off",
     "linebreak-style": 0,
     "quotes":"off",
-    "semi":"off"
+    "semi":"off",
+    "class-methods-use-this":"off",
+    "react/prefer-stateless-function":"off",
+    "no-use-before-define":"off",
+    "one-var":"off",
+    "func-names":"off"
   },
   "env": {
     "browser": true,

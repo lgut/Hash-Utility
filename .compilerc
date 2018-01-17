@@ -7,16 +7,25 @@
             "env",
             {
               "targets": {
-                "electron": "1.8"
+                "electron": "1.8",
+                "chrome":"59"
               }
             }
-          ],
-          "react"
+          ]
+          
         ],
         "plugins": [
           "transform-async-to-generator"
+          
         ],
         "sourceMaps": "inline"
+      },
+      "text/typescript": {
+        "target": "es5",
+        "module": "system",
+        "types": ["node_modules/electron-prebuilt-compile/node_modules/electron/electron.d.ts"],
+        "noImplicitAny":false,
+        "strictNullChecks":false
       }
     },
     "production": {
@@ -26,11 +35,12 @@
             "env",
             {
               "targets": {
-                "electron": "1.8"
+                "electron": "1.8",
+                "chrome":"59"
               }
             }
-          ],
-          "react"
+          ]
+          
         ],
         "plugins": [
           "transform-async-to-generator"
