@@ -1,3 +1,4 @@
+import { join } from "path"
 import { app, BrowserWindow, session } from 'electron';
 import { StartListeners } from './listeners';
 
@@ -17,6 +18,7 @@ const createWindow = () => {
     height: 480,
     resizable: false,
     title: "Hash Utility",
+    icon: join(__dirname, "assets/icons/favicon.ico"),
   });
 
   mainWindow.setMenu(null)
